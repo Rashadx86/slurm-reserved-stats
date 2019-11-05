@@ -48,10 +48,10 @@ LAB3+LAB4,877,608,50,73,43,0,78,12,13,0
 Running ./WaitTimes.sh with no options will call on the default options in the script. This is to list information on all labs in all partitions over the last 3 days.
 
 Options include the following:
-        ```
-        -t                Specify the Start time in slurm readable time format.
-        -p                Specify the partitions to query; separated by commas
-        -a                Specify which accounts to query; separate by spaces
-        -o                Display either csv or  human-readable. Selected by '-o csv' or '-o hr'
-        -h                Display this help message
-        ```
+```
+-t                Specify the Start time in any slurm readable time format.
+-p                Specify the partitions to query; separated by commas
+-a                Specify which accounts to query; separate by spaces. Accounts separated by commas will have their data aggregated together.
+-o                Display either csv or  human-readable. Selected by '-o csv' or '-o hr'. Default is to display both
+-h                Display this help message
+```
