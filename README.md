@@ -32,8 +32,6 @@ Total Jobs: 50530
 2 Days: 9
 >2 Days: 19
 
-...
-
 Account: LAB3,4
 Total Jobs: 877
 1 Min: 608
