@@ -4,7 +4,6 @@ set -e
 ##Script to produce wait time statistics. 
 ##Edit $Accounts below to specify which Slurm accounts to query.
 ##Edit $Partitions to specify partitions; comment out to query all partitions.
-##To specify partitions, specify in a
 
 ##Ex. ./WaitTimes.sh -t 10/20/19 -p 'cryo-cpu,cryo-gpu' -a 'xyzlab abclab'
 
