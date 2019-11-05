@@ -19,7 +19,7 @@ Options include the following:
 Sample output:
 
 ```
-[user@host ~]$ ./WaitTimes.sh -t MM/DD/YY -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB2 LAB3'
+[user@host ~]$ ./WaitTimes.sh -t MM/DD/YY -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB3,LAB4'
 Account: LAB1
 Total Jobs: 50530
 1 Min: 44964
