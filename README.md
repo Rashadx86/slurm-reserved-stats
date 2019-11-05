@@ -5,9 +5,21 @@ Written in bash, run ./WaitTimes
 
 Usage: `./WaitTimes.sh -t $(date -d "-30 days" +%D) -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB2 LAB3,LAB4' `
 
+Running ./WaitTimes.sh with no options will call on the default options in the script. This is to list information on all labs in all partitions over the last 3 days.
+
+Options include the following:
+```
+-t                Specify the Start time in any slurm readable time format.
+-p                Specify the partitions to query; separated by commas
+-a                Specify which accounts to query; separate by spaces. Accounts separated by commas will have their data aggregated together.
+-o                Display either csv or  human-readable. Selected by '-o csv' or '-o hr'. Default is to display both
+-h                Display this help message
+```
+
 Sample output:
 
 ```
+[user@host ~]$ ./WaitTimes.sh -t MM/DD/YY -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB2 LAB3'
 Account: LAB1
 Total Jobs: 50530
 1 Min: 44964
@@ -44,14 +56,3 @@ LAB3+LAB4,877,608,50,73,43,0,78,12,13,0
 ---CSV END---
 ```
 
-
-Running ./WaitTimes.sh with no options will call on the default options in the script. This is to list information on all labs in all partitions over the last 3 days.
-
-Options include the following:
-```
--t                Specify the Start time in any slurm readable time format.
--p                Specify the partitions to query; separated by commas
--a                Specify which accounts to query; separate by spaces. Accounts separated by commas will have their data aggregated together.
--o                Display either csv or  human-readable. Selected by '-o csv' or '-o hr'. Default is to display both
--h                Display this help message
-```
