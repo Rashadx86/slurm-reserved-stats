@@ -3,7 +3,7 @@ Script to produce slurm wait time statistics in human-readable and csv formats
 
 Written in bash, run ./WaitTimes 
 
-Usage: ./WaitTimes.sh -t $(date -d "-30 days" +%D) -p 'cpu_partition,gpu_partition' -a 'abclab xyzlab admin,admin2' 
+Usage: `./WaitTimes.sh -t $(date -d "-30 days" +%D) -p 'cpu_partition,gpu_partition' -a 'abclab xyzlab admin,admin2' `
 
 Sample output:
 
