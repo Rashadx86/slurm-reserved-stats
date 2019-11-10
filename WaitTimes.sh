@@ -5,17 +5,17 @@ set -e
 ##Edit $Accounts below to specify which Slurm accounts to query.
 ##Edit $Partitions to specify partitions; comment out to query all partitions.
 
-##Ex. ./WaitTimes.sh -t 10/20/19 -p 'cryo-cpu,cryo-gpu' -a 'xyzlab abclab'
+##Ex. ./WaitTimes.sh -s 10/20/19 -p 'cryo-cpu,cryo-gpu' -a 'xyzlab abclab'
 
 #Update variables below to change default query options. Runtime flags will override
-export TimeFrame=$(date -d "-3 days" +%D)
+export StartTime=$(date -d "-3 days" +%D)
 #export Partitions='-r cryo-cpu,cryo-gpu'
 #export Accounts=(xyzlab abclab)
 
-while getopts 't:p:a:o:h' arg
+while getopts 's:p:a:o:h' arg
 do
         case "${arg}" in
-                t) unset TimeFrame && TimeFrame=${OPTARG};;
+                s) unset StartTime && StartTime=${OPTARG};;
                 p) unset Partitions && Partitions='-r '${OPTARG};;
                 a) unset Accounts && Accounts=($OPTARG);;
                 o) unset OutputType && OutputType=($OPTARG);;
@@ -23,14 +23,15 @@ do
                    echo
                    echo "   Default options are to display wait times for all accounts in all "
                    echo "   partitions over the past 90 days (each lab having it's own section)"
-                   echo "   The timeframe, partitions, and accounts to query can be specified "
-                   echo "   with the 't','p',and 'a' flags respectively."
+                   echo "   The starttime, endtime, partitions, and accounts to query can be specified "
+                   echo "   with the 's','p',and 'a' flags respectively."
                    echo "   CSV and human-readable both displayed by default, select which with '-o' flag"
                    echo
-                   echo "   Ex: ./WaitTimes.sh -t MM/DD/YY -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB2 LAB3' -o hr"
+                   echo "   Ex: ./WaitTimes.sh -s MM/DD/YY -e MM/DD/YY -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB2 LAB3' -o hr"
                    echo 
                    echo "   Options: See example above for usage"
-                   echo "        -t                Specify the Start time in slurm readable time format."
+                   echo "        -s                Specify the start time in slurm readable time format."
+                   echo "        -e                Specify the end time in slurm readable time format."
                    echo "        -p                Specify the partitions to query; separated by commas"
                    echo "        -a                Specify which accounts to query; separate by spaces"
                    echo "        -o                Display either csv or  human-readable. Selected by '-o csv' or '-o hr'"
@@ -55,7 +56,7 @@ fi
 #Get wait times; convert days to hours; convert to digits in HHMMSS format
 for i in ${Accounts[*]}
 do
-        sudo sacct $Partitions -A $i -S $TimeFrame -o "reserved" --noheader |
+        sudo sacct $Partitions -A $i -S $StartTime -E $EndTime -o "reserved" --noheader |
         awk 'NF' |
         sed 's/^[ \t]*//' |
         sed 's/-/ - /g' |
