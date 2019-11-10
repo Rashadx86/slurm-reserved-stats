@@ -3,13 +3,14 @@ Script to produce slurm wait time statistics in human-readable and csv formats
 
 Written in bash, run ./WaitTimes.sh
 
-Usage: `./WaitTimes.sh -t $(date -d "-30 days" +%D) -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB3,LAB4' `
+Usage: `./WaitTimes.sh -s $(date -d "-30 days" +%D) -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB3,LAB4' `
 
 Running ./WaitTimes.sh with no options will call on the default options in the script. This is to query all labs in all partitions over the last 3 days.
 
 Options include the following:
 ```
--t                Specify the Start time in any slurm readable time format. End time is until current time if undefined.
+-s                Specify the start time in any slurm readable time format. End time is until current time if undefined.
+-e                Specify the end time in any slurm readable time format. Start time must be defined if end time is used.
 -p                Specify the partitions to query; separated by commas
 -a                Specify which accounts to query; separate by spaces. Accounts separated by commas will have their data aggregated together.
 -o                Display either csv or  human-readable. Selected by '-o csv' or '-o hr'. Default is to display both
@@ -19,7 +20,7 @@ Options include the following:
 Sample output:
 
 ```
-[user@host ~]$ ./WaitTimes.sh -t MM/DD/YY -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB3,LAB4'
+[user@host ~]$ ./WaitTimes.sh -s MM/DD/YY -e MM/DD/YY -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB3,LAB4'
 Account: LAB1
 Total Jobs: 50530
 1 Min: 44964
