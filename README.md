@@ -9,7 +9,7 @@ Running ./WaitTimes.sh with no options will call on the default options in the s
 
 Options include the following:
 ```
--t                Specify the Start time in any slurm readable time format.
+-t                Specify the Start time in any slurm readable time format. End time is until current time if undefined.
 -p                Specify the partitions to query; separated by commas
 -a                Specify which accounts to query; separate by spaces. Accounts separated by commas will have their data aggregated together.
 -o                Display either csv or  human-readable. Selected by '-o csv' or '-o hr'. Default is to display both
