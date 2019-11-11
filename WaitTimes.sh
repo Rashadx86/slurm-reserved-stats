@@ -52,11 +52,15 @@ else
         echo "ERROR: Accounts is not defined as an array" ; exit 1
 fi
 
+#Add $EndFlag if #EndTime flag is defined
+if [[ -n "$EndTime" ]]; then
+        export EndFlag='-E'
+fi
 
 #Get wait times; convert days to hours; convert to digits in HHMMSS format
 for i in ${Accounts[*]}
 do
-        sudo sacct $Partitions -A $i -S $StartTime -E $EndTime -o "reserved" --noheader |
+        sudo sacct $Partitions -A $i -S $StartTime $EndFlag $EndTime -o "reserved" --noheader |
         awk 'NF' |
         sed 's/^[ \t]*//' |
         sed 's/-/ - /g' |
