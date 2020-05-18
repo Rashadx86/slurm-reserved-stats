@@ -1,11 +1,15 @@
 # slurm-reserved-stats
 Script to produce slurm wait time statistics in human-readable and csv formats
 
-Written in bash, run ./WaitTimes.sh
+### Usage
 
+#### Default options
+Written in bash, execute ./WaitTimes.sh. 
+
+Running ./WaitTimes.sh with no options will call on the default options in the script. This is to query all labs in all partitions over the last 3 days. These options are gathered from WaitTimes.sh. Edit variables to customize default search parameters.
+
+#### Command line options
 Usage: `./WaitTimes.sh -s $(date -d "-30 days" +%D) -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB3,LAB4' `
-
-Running ./WaitTimes.sh with no options will call on the default options in the script. This is to query all labs in all partitions over the last 3 days.
 
 Options include the following:
 ```
@@ -17,7 +21,7 @@ Options include the following:
 -h                Display this help message
 ```
 
-Sample output:
+### Sample output:
 
 ```
 [user@host ~]$ ./WaitTimes.sh -s MM/DD/YY -e MM/DD/YY -p 'PARTITION1,PARTITION2,PARTITION3' -a 'LAB1 LAB3,LAB4'
